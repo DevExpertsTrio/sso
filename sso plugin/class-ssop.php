@@ -10,10 +10,12 @@
 namespace BPCSSO;
 
 use BPCSSO\Frontend\adminFront;
+use BPCSSO\Frontend\AdminSettings;
 use BPCSSO\Helper\Dbhandler;
 use BPCSSO\includes\saml\samlsso;
 
-define( 'PLUGIN_VERSION', '1.0.1' );
+define( 'BPC_SSO_PLUGIN_URL', plugins_url( '', __FILE__ ) );
+define( 'BPC_SSO_PLUGIN_VERSION', '1.0.1' );
 
 require_once 'class-autoloader.php';
 
@@ -47,6 +49,7 @@ class Ssop {
 		add_action( 'admin_init', array( samlsso::get_instance(), 'bpc_sso_test_saml' ) );
 		register_deactivation_hook( __FILE__, array( $this, 'bpc_sso_deactivate' ) );
 		register_uninstall_hook( __FILE__, array( __CLASS__, 'bpc_sso_uninstall' ) ); // Used __CLASS__ to reference the class.
+		add_action( 'admin_init', array( AdminSettings::get_instance(), 'bpc_sso__save_settings' ) );
 	}
 
 	public function bpc_sso_admin_menu() {
@@ -68,7 +71,7 @@ class Ssop {
 		}
 		$css_url = plugins_url( 'assets/css/sso-plugin.css', __FILE__ );
 
-		wp_enqueue_style( 'bpc_sso_css', $css_url, array(), PLUGIN_VERSION );
+		wp_enqueue_style( 'bpc_sso_css', $css_url, array(), BPC_SSO_PLUGIN_VERSION );
 	}
 }
 $sso_login = Ssop::get_instance();

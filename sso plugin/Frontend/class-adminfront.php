@@ -4,6 +4,7 @@ namespace BPCSSO\Frontend;
 
 use BPCSSO\Frontend\SAML\saml;
 use BPCSSO\Frontend\Oauth\oauth;
+use BPCSSO\Frontend\SAML\ContactUs;
 use BPCSSO\Helper\BpcConstants;
 use BPCSSO\Helper\bpcwrapper;
 
@@ -28,6 +29,10 @@ class adminFront {
 
 		?>
 		<div class="bpc_sso_admin_front">
+			<?php
+				// Render the contact us form
+				ContactUs::bpc_sso_render_contact_us_form();
+			?>
 			<div class="bpc_sso_admin_front_header">
 				<div class="bpc_sso_admin_front_heading_and_img">
 					<img class="bpc_sso_admin_front_header_img" src="<?php echo esc_url( bpcwrapper::bpc_sso_get_image_url( '4-squares-10581.svg' ) ); ?>"/>
@@ -74,6 +79,7 @@ class adminFront {
 				} else {
 					$this->bpc_saml_sso_first_step();
 				}
+
 			?>
 		</div>
 		<?php

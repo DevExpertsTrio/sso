@@ -41,7 +41,7 @@ class Dbhandler {
         dbDelta($sql);
     }
 
-    public static function bpc_sso_create_metadata_table() {
+    public static function bpc_sso_create_saml_metadata_table() {
         global $wpdb;
         $charset_collate = $wpdb->get_charset_collate();
         $table_name = $wpdb->prefix . 'bpc_metadata';
@@ -63,7 +63,7 @@ class Dbhandler {
         dbDelta($sql);
     }
 
-    public static function bpc_sso_create_sp_metadata_table() {
+    public static function bpc_sso_create_saml_sp_metadata_table() {
         global $wpdb;
         $charset_collate = $wpdb->get_charset_collate();
         $table_name = $wpdb->prefix . 'bpc_sp_metadata';

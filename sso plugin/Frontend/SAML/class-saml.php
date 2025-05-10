@@ -33,7 +33,7 @@ class saml
 		<h2>Configure Idp Metadata</h1>
 			<form action="" method="post" class="form">
 				<input hidden name="option" value="bpc_sso_get_idp_metadata" />
-				<input hidden name="page" value="saml" />
+				<input hidden name="tab" value="saml" />
 				<?php echo wp_nonce_field( 'bpc_sso_get_idp_metadata' ); ?>
 
 				<label for="idp-name">Identity Provider Name:</label>
@@ -60,7 +60,7 @@ class saml
 		<h2>SAML Configuration</h2>
 		<form action="" method="post" class="form">
 			<input hidden name="option" value="bpc_sso_save_idp_metadata" />
-			<input hidden name="page" value="saml" />
+			<input hidden name="tab" value="saml" />
 			<?php echo wp_nonce_field( 'bpc_sso_save_idp_metadata' ); ?>
 
 				<label for="name">Name:</label>

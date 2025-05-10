@@ -62,7 +62,7 @@ class Ssop {
 			''
 		);
 
-		Dbhandler::bpc_sso_create_saml_table();
+		Dbhandler::bpc_sso_create_saml_metadata_table();
 	}
 
 	function bpc_sso_settings_style( $page ) {

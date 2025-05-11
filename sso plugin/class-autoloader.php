@@ -14,9 +14,10 @@ define( 'BPC_SSO_PLUGIN_DIR', __DIR__ . DIRECTORY_SEPARATOR );
 define( 'BPC_SSO_PLUGIN_FILE', __FILE__ );
 
 moazure_include_file( BPC_SSO_PLUGIN_DIR . 'Frontend' );
+moazure_include_file( BPC_SSO_PLUGIN_DIR . 'Handler' );
 moazure_include_file( BPC_SSO_PLUGIN_DIR . 'Helper' );
 moazure_include_file( BPC_SSO_PLUGIN_DIR . 'includes' );
-moazure_include_file( BPC_SSO_PLUGIN_DIR . 'controller' );
+// moazure_include_file( BPC_SSO_PLUGIN_DIR . 'Controller' );
 // moazure_include_file( BPC_SSO_PLUGIN_DIR . 'Wrappers' );
 // moazure_include_file( BPC_SSO_PLUGIN_DIR . 'Observer' );
 // moazure_include_file( BPC_SSO_PLUGIN_DIR . 'View' );

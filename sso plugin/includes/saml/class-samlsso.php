@@ -3,6 +3,8 @@
 namespace BPCSSO\includes\saml;
 
 use DOMDocument;
+use BPCSSO\Handler\saml\IDP_Metadata_Handler;
+use BPCSSO\Handler\saml\SP_Metadata_Handler;
 
 class samlsso {
 
@@ -17,6 +19,30 @@ class samlsso {
 
 	public function bpc_sso_test_saml() {
 		$option = ! empty( $_GET['option'] ) ? sanitize_text_field( wp_unslash( $_GET['option'] ) ) : '';
+
+		$metadata_file = plugin_dir_url( __FILE__ ) . '../../mo-idp-metadata.xml';
+		$idp_metadata = IDP_Metadata_Handler::get_instance();
+		$idp_met_arr = $idp_metadata->parse_metadata_xml( $metadata_file );
+
+		$sp_met_obj = SP_Metadata_Handler::get_instance();
+		$sp_met_obj->set_sp_entity_id('hello there');
+		$sp_met_obj->set_acs_url('https://google.com');
+		$sp_metadata = $sp_met_obj->get_sp_metadata();
+
+		error_log('SP metadata => '.print_r($sp_metadata, true));
+
+		// if ( ob_get_contents() ) {
+		// 	ob_clean();
+		// }
+
+		// header( 'Content-Type: application/xml' );
+		// if ( $download ) {
+			// header( 'Content-Disposition: attachment; filename="Metadata.xml"' );
+		// }
+
+		// echo $sp_metadata;
+		// exit;
+
 		switch ( $option ) {
 			case 'bpcsso_test_saml':
 				$this->bpc_sso_send_test_request();
@@ -24,7 +50,7 @@ class samlsso {
 			case 'bpc_sso_saml_metadata':
 				$this->bpc_sso_show_saml_metadata();
 				break;
-			case 'loda_lahsun':
+			case 'idp_metadata':
 				$this->bpc_sso_read_idp();
 				break;
 		}
@@ -38,7 +64,7 @@ class samlsso {
 	}
 
 	private function bpc_sso_show_saml_metadata() {
-		 $metadata = metadata::bpc_sso_get_metadata();
+		$metadata = metadata::bpc_sso_get_metadata();
 		ob_clean();
 		header( 'Content-Type: text/xml' );
 		header( 'Content-Disposition: attachment; filename="mo-saml-sp-metadata.xml"' );
@@ -47,6 +73,7 @@ class samlsso {
 	}
 
 	private function bpc_sso_read_idp() {
+
 		$idp_metadata = <<<XML
         <md:EntityDescriptor xmlns:md="urn:oasis:names:tc:SAML:2.0:metadata" entityID="http://www.okta.com/exkcgsral6QPUUDQb5d7">
             <md:IDPSSODescriptor WantAuthnRequestsSigned="false" protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol">

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<md:EntityDescriptor xmlns:md="urn:oasis:names:tc:SAML:2.0:metadata" entityID="http://localhost/wpdev/wp-content/plugins/miniorange-wp-as-saml-idp/">
+  <md:IDPSSODescriptor WantAuthnRequestsSigned="1" protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol">
+    <md:KeyDescriptor use="signing">
+      <ds:KeyInfo xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
+        <ds:X509Data>
+          <ds:X509Certificate>MIIFDjCCA/agAwIBAgIEZ5+lCzANBgkqhkiG9w0BAQ0FADCBuDELMAkGA1UEBhMCVVMxEDAOBgNVBAgTB1d5b21pbmcxETAPBgNVBAcTCENoZXllbm5lMS0wKwYDVQQKEyRtaW5pT3JhbmdlIFNlY3VyaXR5IFNvZnR3YXJlIFB2dCBMdGQxFjAUBgNVBAsTDVdvcmRQcmVzcyBJRFAxEzARBgNVBAMTCm1pbmlvcmFuZ2UxKDAmBgkqhkiG9w0BCQEWGXdwaWRwc3VwcG9ydEB4ZWN1cmlmeS5jb20wHhcNMjUwMjAyMTcwMjAzWhcNMjYwODAzMTcwMjAzWjCBuDELMAkGA1UEBhMCVVMxEDAOBgNVBAgTB1d5b21pbmcxETAPBgNVBAcTCENoZXllbm5lMS0wKwYDVQQKEyRtaW5pT3JhbmdlIFNlY3VyaXR5IFNvZnR3YXJlIFB2dCBMdGQxFjAUBgNVBAsTDVdvcmRQcmVzcyBJRFAxEzARBgNVBAMTCm1pbmlvcmFuZ2UxKDAmBgkqhkiG9w0BCQEWGXdwaWRwc3VwcG9ydEB4ZWN1cmlmeS5jb20wggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQDVBHhRgf3uv3XhU47dPpBdJqp/oLq8q/HHe2SJJYAfX9rsQeZ34ZhjIetczrqWuO7X2fyfdEN7yW37k23xhAMsH7V6Q8+je3Dt2lZ30oAFamRiH+DsWVaXRaPTWVRPcZ4nsT89UjtrumR1Mn8wkWm2etBouraPvulyowt5idMBWqIEuACGElva4GjQMIxwCgNm5ISGyKmYzb2rb/OWrXKErz6bVUK+TFsJ6BJaR3TbyaFr5JbcE92OaLm9zn8Qulvftc61re0HfaD4t2HBgY3dKJvZchUid9oRNZXP/w8Sqx2/mIkbapKBVEa/uaKb10a4gyR5F6YHFLHItDImg1GNAgMBAAGjggEcMIIBGDAdBgNVHQ4EFgQUdZeZRXLAUaf6mYlvyas40AoE698wgegGA1UdIwSB4DCB3YAUdZeZRXLAUaf6mYlvyas40AoE69+hgb6kgbswgbgxCzAJBgNVBAYTAlVTMRAwDgYDVQQIEwdXeW9taW5nMREwDwYDVQQHEwhDaGV5ZW5uZTEtMCsGA1UEChMkbWluaU9yYW5nZSBTZWN1cml0eSBTb2Z0d2FyZSBQdnQgTHRkMRYwFAYDVQQLEw1Xb3JkUHJlc3MgSURQMRMwEQYDVQQDEwptaW5pb3JhbmdlMSgwJgYJKoZIhvcNAQkBFhl3cGlkcHN1cHBvcnRAeGVjdXJpZnkuY29tggRnn6ULMAwGA1UdEwQFMAMBAf8wDQYJKoZIhvcNAQENBQADggEBAMBV7HkCPWC3MWm/Yzq6rjODlAYv4MLMlqttMd8vtwuvUS7sqhz6NcvMNd//uRw1HoYPcG4wiWDFeCPspDsj2RsD4ql4ecMBEMJ2pteNzSza6B00tDydwrHBozR4+1XZgkgx4JncQLyOOtHTx8Lx1RkJHaPBWecs/5nNiIVTGVCQ/KXO5WP62qY1jijaVABLC+DDwXHOE/9Oy0AGz2VFt1tP8EkSiJ7nbz+d/05gE5fH4vsleHRe4Db6xZ4fHzSXGuM1Oooc3lDP5WPyq2fIbv6yJls7JscZxHhPYe5j1QaSCQNFK6a2jym1+OvBxaiUejwaw0NdJq7WprMev78r68I=</ds:X509Certificate>
+        </ds:X509Data>
+      </ds:KeyInfo>
+    </md:KeyDescriptor>
+    <md:NameIDFormat>urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress</md:NameIDFormat>
+    <md:NameIDFormat>urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified</md:NameIDFormat>
+    <md:SingleSignOnService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location="http://localhost/wpdev/"/>
+    <md:SingleSignOnService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect" Location="http://localhost/wpdev/"/>
+  </md:IDPSSODescriptor>
+  <md:Organization>
+    <md:OrganizationName xml:lang="en-US">miniOrange</md:OrganizationName>
+    <md:OrganizationDisplayName xml:lang="en-US">miniOrange</md:OrganizationDisplayName>
+    <md:OrganizationURL xml:lang="en-US">https://miniorange.com</md:OrganizationURL>
+  </md:Organization>
+  <md:ContactPerson contactType="technical">
+    <md:GivenName>miniOrange</md:GivenName>
+    <md:SurName>Support</md:SurName>
+    <md:EmailAddress>info@xecurify.com</md:EmailAddress>
+  </md:ContactPerson>
+</md:EntityDescriptor>

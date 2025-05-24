@@ -1,7 +1,20 @@
-<md:EntityDescriptor xmlns:md="urn:oasis:names:tc:SAML:2.0:metadata" entityID= "">
-    <md:SPSSODescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol">
-        <md:SingleLogoutService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect" Location="your-slo-url"/>
-        <md:NameIDFormat>urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified</md:NameIDFormat>
-        <md:AssertionConsumerService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location="your-acs-url" index="1"/>
-    </md:SPSSODescriptor>
-</md:EntityDescriptor>
+<EntityDescriptor xmlns="urn:oasis:names:tc:SAML:2.0:metadata"
+                  entityID="https://yourdomain.com/sso">
+  <SPSSODescriptor AuthnRequestsSigned="false" WantAssertionsSigned="true"
+                   protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol">
+
+    <SingleLogoutService 
+        Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect"
+        Location="https://yourdomain.com/sso/slo" />
+
+    <NameIDFormat>
+      urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified
+    </NameIDFormat>
+
+    <AssertionConsumerService 
+        Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST"
+        Location="https://yourdomain.com/sso/acs"
+        index="1" isDefault="true"/>
+  </SPSSODescriptor>
+</EntityDescriptor>
+

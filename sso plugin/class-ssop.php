@@ -11,7 +11,7 @@ namespace BPCSSO;
 
 use BPCSSO\Frontend\adminFront;
 use BPCSSO\Frontend\AdminSettings;
-use BPCSSO\Helper\Dbhandler;
+use BPCSSO\Helper\DbSchemaManager;
 use BPCSSO\includes\saml\samlsso;
 
 define( 'BPC_SSO_PLUGIN_URL', plugins_url( '', __FILE__ ) );
@@ -62,7 +62,9 @@ class Ssop {
 			''
 		);
 
-		Dbhandler::bpc_sso_create_saml_metadata_table();
+		DbSchemaManager::bpc_sso_create_application_table();
+		DbSchemaManager::bpc_sso_create_saml_sp_metadata_table();
+		DbSchemaManager::bpc_sso_create_saml_metadata_table();
 	}
 
 	function bpc_sso_settings_style( $page ) {
@@ -75,3 +77,4 @@ class Ssop {
 	}
 }
 $sso_login = Ssop::get_instance();
+

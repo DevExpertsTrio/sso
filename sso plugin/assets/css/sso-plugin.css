@@ -104,8 +104,8 @@
     color: white;
     font-size: 1.2rem;
     cursor: pointer;
-    right: 2rem;
-    bottom: 1rem;
+    right: 4rem;
+    bottom: 4rem;
 }
 
 .bpc-sso-contact-us .contact-form-container {
@@ -119,8 +119,8 @@
     position: fixed;
     background-color: white;
     z-index: 2;
-    right: 2rem;
-    bottom: 5rem;
+    right: 3.5rem;
+    bottom: 8rem;
 }
 
 .bpc-sso-contact-us .contact-form-header {
@@ -183,4 +183,28 @@ textarea {
 
 .bpc-sso-contact-us .send-btn:hover {
     background-color: #594fd4;
+}
+
+.bpc_sso_contact_us_dialogue {
+    position: fixed;
+    right: 124px;
+    bottom: 70px;
+    background-color: #ffffff;
+    color: rgb(0, 0, 0);
+    padding: 10px 15px;
+    border-radius: 8px;
+    font-size: 14px;
+    max-width: 100px;
+    z-index: 2;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.bpc_sso_contact_us_dialogue::after {
+    content: '';
+    position: absolute;
+    right: -10px;
+    bottom: 10px;
+    border-width: 10px 0 10px 10px;
+    border-style: solid;
+    border-color: transparent transparent transparent #ffffff;
 }

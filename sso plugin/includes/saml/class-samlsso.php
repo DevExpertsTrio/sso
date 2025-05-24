@@ -3,6 +3,8 @@
 namespace BPCSSO\includes\saml;
 
 use DOMDocument;
+use BPCSSO\Handler\saml\IDP_Metadata_Handler;
+
 
 class samlsso {
 

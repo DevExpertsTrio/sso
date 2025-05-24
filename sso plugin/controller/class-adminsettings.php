@@ -19,8 +19,8 @@ class AdminSettings {
 	}
 
 	public static function bpc_sso__save_settings() {
-        error_log('here');
-        error_log('POST: ' . print_r($_POST, true));
+        // error_log('here');
+        // error_log('POST: ' . print_r($_POST, true));
         if( ! current_user_can( 'manage_option' ) && empty( $_POST['tab'] ) && ! empty( $_POST['option'] ) && ! check_admin_referer( sanitize_text_field( wp_unslash( $_POST['option'] ) ) ) ) {
             return;
         }

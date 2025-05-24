@@ -19,38 +19,16 @@ class ContactUs
     public static function bpc_sso_render_contact_us_form()
     {
     ?>
-        <!-- <div class="bpc-sso-contact-us">
-            <button type="button" class="bpc-sso-contact-us-button"><img width="30px" height="30px" src="<?php echo bpcwrapper::bpc_sso_get_image_url('contact-us.svg') ?>"/></button>
-            <form action="" method="post" class="form" id="bpc-sso-contact-us-form" style="display:none;">
-                <header class="bpc_sso_admin_front_header">
-                    <h3>Contact Us</h3>
-                    <img class="bpc_sso_admin_front_header_img" src="<?php echo bpcwrapper::bpc_sso_get_image_url('contact-us-header.svg') ?>"/>
-                </header>
-
-                <input hidden name="option" value="bpc_sso_contact_us" />
-                <input hidden name="tab" value="contact-us" />
-                <?php echo wp_nonce_field('bpc_sso_contact_us'); ?>
-
-                <label for="name">Name:</label>
-                <input type="text" id="name" name="name" placeholder="Your Name" required>
-
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email" placeholder="Your Email" required>
-
-                <label for="message">Message:</label>
-                <textarea id="message" name="message" placeholder="Your Message" required></textarea>
-
-                <input type="submit" value="Submit">
-            </form>
-        </div> -->
-
         <div class="bpc-sso-contact-us">
             <button type="button" class="bpc-sso-contact-us-button" id="bpc_sso_contact_us_button"><img width="30px" height="30px" src="<?php echo bpcwrapper::bpc_sso_get_image_url('contact-us.svg') ?>"/></button>
+            <div class="bpc_sso_contact_us_dialogue" id="bpc_sso_contact_us_dialogue">
+                Reach out to us for any inquiry!
+            </div>
             <div class="contact-form-container" id="bpc-sso-contact-us-form" style="display:none;">
                 <div class="contact-form-header">
                     <img src="<?php echo bpcwrapper::bpc_sso_get_image_url('contact-us-header.svg') ?>" alt="Contact Icon" class="contact-icon" />
                     <h2>Contact Us</h2>
-                    <p>Reach out to us for any inquiry</p>
+                    <p>Complete the form, and we'll follow up shortly.</p>
                 </div>
                 <form enctype="multipart/form-data" action="" method="post">
                     <input hidden name="option" value="bpc_sso_contact_us" />
@@ -69,18 +47,51 @@ class ContactUs
 
 
         <script type="text/javascript">
-            document.querySelector('.bpc-sso-contact-us-button').addEventListener('click', function() {
-                var form = document.getElementById('bpc-sso-contact-us-form');
-                var button = document.getElementById('bpc_sso_contact_us_button');
-                if (form.style.display === 'none') {
-                    form.style.display = 'block';
-                    button.innerHTML = '<img width="30px" height="30px" src="<?php echo bpcwrapper::bpc_sso_get_image_url('close-x.svg') ?>"/>';
+            const contactButton = document.getElementById('bpc_sso_contact_us_button');
+            const contactForm = document.getElementById('bpc-sso-contact-us-form');
+            const dialogue = document.getElementById('bpc_sso_contact_us_dialogue');
+
+            let dialogueTimeout;
+
+            function toggleForm() {
+                const isHidden = contactForm.style.display === 'none';
+
+                if (isHidden) {
+                    contactForm.style.display = 'block';
+                    contactButton.innerHTML = '<img width="34px" height="34px" src="<?php echo bpcwrapper::bpc_sso_get_image_url('close-x.svg') ?>"/>';
+                    dialogue.style.display = 'none';
+                    clearTimeout(dialogueTimeout);
                 } else {
-                    form.style.display = 'none';
-                    button.innerHTML = '<img width="30px" height="30px" src="<?php echo bpcwrapper::bpc_sso_get_image_url('contact-us.svg') ?>"/>';
+                    contactForm.style.display = 'none';
+                    contactButton.innerHTML = '<img width="34px" height="34px" src="<?php echo bpcwrapper::bpc_sso_get_image_url('contact-us.svg') ?>"/>';
+                    startDialogueTimer();
+                }
+            }
+
+            function startDialogueTimer() {
+                clearTimeout(dialogueTimeout);
+                dialogueTimeout = setTimeout(() => {
+                    dialogue.style.display = 'block';
+                }, 5000); // 5 seconds delay
+            }
+
+            contactButton.addEventListener('click', function (e) {
+                e.stopPropagation();
+                toggleForm();
+            });
+
+            // Close the form when clicking outside
+            document.addEventListener('click', function (e) {
+                const isClickInside = contactForm.contains(e.target) || contactButton.contains(e.target);
+
+                if (!isClickInside && contactForm.style.display === 'block') {
+                    contactForm.style.display = 'none';
+                    contactButton.innerHTML = '<img width="34px" height="34px" src="<?php echo bpcwrapper::bpc_sso_get_image_url('contact-us.svg') ?>"/>';
+                    startDialogueTimer();
                 }
             });
         </script>
+
     <?php
     }
 }
